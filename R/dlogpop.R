@@ -1,13 +1,14 @@
 #'  Logistic population growth
 #' @param time time
 #' @param P initial population
-#' @param r intrinsic population growth rate 
-#' @param K carrying capacity
+#' @param params$r intrinsic population growth rate 
+#' @param params$K carrying capacity of the population
 #' @return derivative of population with time 
-#' @examples use with ode solver
-#' ode(y=1,time=c(1;100),dexppop, parms=c(0.012))
 
-dlogpop = function(time, P, r, K) {
+dlogpop = function(time, P, params) {
+  
+  r = params$r
+  K = params$K
   
   dlogpop = r*P*(1-P/K) 
   
