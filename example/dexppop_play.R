@@ -2,7 +2,7 @@
 #' @param T  period of growth
 #' @param P initial population
 #' @param parms$r - base growth rate
-#' @parms parms$K - carrying capacity
+#' @param parms$K - carrying capacity
 #' @return change in population 
 #'
 dexppop_play = function(time, P, parms) {
