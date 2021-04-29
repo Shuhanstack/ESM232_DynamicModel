@@ -1,0 +1,69 @@
+---
+title: "Assignment 5 - Dynamic Models"
+author: "Shuhan Song, Anthony Luna, and Jennifer Truong"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+# Background
+
+# Methods
+
+```{r libraries}
+# Libraries
+library(tidyverse)
+library(janitor)
+library(scales)
+library(here)
+library(deSolve)
+
+# Custom Functions
+source(here("R","dlogpop.R"))
+
+```
+```{bash function}
+# bash function to print the code of our function
+cat ./R/dlogpop.R
+```
+```{r parms}
+# Specification of all required parameters
+parms <- list(
+  r = 0.05,
+  K = 20
+)
+
+P = 1
+
+time = seq(from = 1, to = 50)
+```
+
+```{r model-implementation}
+
+# Implementation of the model using ode from deSolver
+pop_with_K <- ode(
+  y=P,
+  times = time,
+  func = dlogpop,
+  parms = parms
+)
+
+# Rename the columns so it is useful 
+colnames(pop_with_K)=c("time","P")
+
+```
+
+# Results
+
+```{r}
+# Plot of the results
+ggplot(data = as.data.frame(pop_with_K))+
+  geom_line(aes(x=time,y=P))+
+  labs(title = "Population model with carrying capacity",
+    x = "Year",
+    y = "Population") + 
+    theme_minimal()
+```
+
+# Discussion
