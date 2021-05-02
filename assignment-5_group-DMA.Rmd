@@ -10,7 +10,6 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 # Background
 
 Dynamic modeling is often used when examining environmental problems over space and time. Patterns occur, and relationships between different places and different events begin to be apparent. Here, we demonstrate a model for logistic population growth over 50 years. The equation for logistic population growth, which is a differential equation, is
-
 $$dP/dt = rP(1-P/K)$$
 where $P$ is the initial population, $r$ is the intrinsic growth rate, $K$ is the carrying capacity, and $dP/dt$ is the change in population over time.
 
@@ -28,7 +27,7 @@ library(deSolve)
 source(here("R","dlogpop.R"))
 
 ```
-```{bash function}
+```{bash function, engine.path = "C:/Program Files/Git/git-bash.exe"}
 # bash function to print the code of our function
 cat ./R/dlogpop.R
 ```
@@ -73,4 +72,6 @@ ggplot(data = as.data.frame(pop_with_K))+
 
 # Discussion
 
-Our graph seemed to show exponential population growth with no signs of the carrying capacity (K = 20), even though we were plotting a logistic population growth model. In fact, the highest population in the plot is `r pop_with_k$p[50]` at year 50, which is extremely lower than the carrying capacity we specified. The likely cause of this is our time scale (years 1 to 50) being too short. The population seems to reach the carrying capacity beyond year 50, so we need to expand our time range in order to capture the rest of the population dynamics in our logistic growth model.
+Our graph seemed to show exponential population growth with no signs of the carrying capacity (K = 20), even though we were plotting a logistic population growth model. In fact, the highest population in the plot is 7.576973 at year 50, which is extremely lower than the carrying capacity we specified. 
+
+The likely cause of this is our time scale (years 1 to 50) being too short. The population seems to reach the carrying capacity beyond year 50, so we need to expand our time range in order to capture the rest of the population dynamics in our logistic growth model.
